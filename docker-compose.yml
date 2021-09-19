@@ -1,0 +1,61 @@
+version: "3.8"
+
+services:
+  order-api:
+    image: setelorderservice
+    container_name: setel-order-service
+    build: ./setel-order-service
+    depends_on:
+      - mongodb
+    links:
+      - mongodb
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3000:3000
+    networks:
+      - nesjs-network
+
+  payment-api:
+    image: setelpaymentservice
+    container_name: setel-payment-service
+    build: ./setel-payment-service
+    environment:
+      NODE_ENV: production
+    ports:
+      - "3001:3001"
+    networks:
+      - nesjs-network
+
+  web-ui:
+    image: setelweb
+    container_name: setel-web-ui
+    build: ./setel-web-ui
+    environment:
+      NODE_ENV: production
+    ports:
+      - "3002:3002"
+    networks:
+      - nesjs-network
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    environment:
+      - MONGODB_DATABASE="orders"
+      # MONGO_INITDB_DATABASE: orders
+      # MONGO_INITDB_ROOT_USERNAME: root
+      # MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - data-db:/data/db
+    ports:
+      - 27017:27017
+    networks:
+      - nesjs-network
+
+volumes:
+  data-db:
+
+networks:
+  nesjs-network:
+    driver: bridge
