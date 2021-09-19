@@ -42,10 +42,10 @@ services:
     image: mongo:latest
     container_name: mongodb
     environment:
-      - MONGODB_DATABASE="orders"
-      # MONGO_INITDB_DATABASE: orders
-      # MONGO_INITDB_ROOT_USERNAME: root
-      # MONGO_INITDB_ROOT_PASSWORD: example
+      # - MONGODB_DATABASE="orders"
+      MONGO_INITDB_DATABASE: orders
+      MONGO_INITDB_ROOT_USERNAME: seteladmin
+      MONGO_INITDB_ROOT_PASSWORD: secret
     volumes:
       - data-db:/data/db
     ports:
