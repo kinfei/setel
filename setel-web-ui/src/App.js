@@ -21,7 +21,7 @@ function App() {
         <Route exact path="/" component={OrderList} />
         <Route path="/order/create" component={NewOrder} />
         <Route path="/order/:id" component={Order} />
-        <Route path="*" component={NotFound} />
+        <Route component={NotFound} />
       </Switch>
     </BrowserRouter>
   );
