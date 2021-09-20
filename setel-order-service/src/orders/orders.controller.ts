@@ -15,8 +15,12 @@ export class OrdersController {
   constructor(private readonly ordersService: OrdersService) {}
 
   @Post()
-  async createOrder(@Body('name') name: string) {
-    return await this.ordersService.createOrder(name);
+  async createOrder(
+    @Body('name') name: string,
+    @Body('price') price: number,
+    @Body('description') description: string,
+  ) {
+    return await this.ordersService.createOrder(name, price, description);
   }
 
   @Get()
@@ -24,7 +28,7 @@ export class OrdersController {
     return await this.ordersService.getOrders();
   }
 
-  @Get('/status/:id')
+  @Get('/:id')
   getOrder(@Param('id') id: string) {
     return this.ordersService.getOrder(id);
   }

@@ -21,11 +21,13 @@ export class OrdersService {
     @InjectModel('Order') private readonly orderModel: Model<Order>,
   ) {}
 
-  async createOrder(name: string) {
+  async createOrder(name: string, price: number, description: string) {
     const currentDate = Date.now();
 
     const newOrder = new this.orderModel({
       name,
+      price,
+      description,
       status: OrdersService.CREATED,
       created_at: currentDate,
       updated_at: currentDate,
@@ -38,6 +40,8 @@ export class OrdersService {
     return {
       id: newOrder.id,
       name: newOrder.name,
+      price: newOrder.price,
+      description: newOrder.description,
       status: newOrder.status,
       created: newOrder.created_at,
       updated: newOrder.updated_at,
@@ -49,7 +53,9 @@ export class OrdersService {
 
     return orders.map((x) => ({
       id: x.id,
-      title: x.name,
+      name: x.name,
+      price: x.price,
+      description: x.description,
       status: x.status,
       created: x.created_at,
       updated: x.updated_at,
@@ -62,6 +68,8 @@ export class OrdersService {
     return {
       id: order.id,
       name: order.name,
+      price: order.price,
+      description: order.description,
       status: order.status,
       created: order.created_at,
       updated: order.updated_at,
@@ -84,20 +92,24 @@ export class OrdersService {
   }
 
   private async verifyOrder(order: Order) {
-    const result = await verifyPayment(order);
+    try {
+      const result = await verifyPayment(order);
 
-    console.log({ result });
+      console.log({ result });
 
-    order.updated_at = new Date();
+      order.updated_at = new Date();
 
-    if (result.status === 'approved') {
-      order.status = OrdersService.CONFIRMED;
-      order.save();
+      if (result.status === 'approved') {
+        order.status = OrdersService.CONFIRMED;
+        order.save();
 
-      this.deliverOrder(order.id);
-    } else {
-      order.status = OrdersService.CANCELLED;
-      order.save();
+        this.deliverOrder(order.id);
+      } else {
+        order.status = OrdersService.CANCELLED;
+        order.save();
+      }
+    } catch (error) {
+      throw new BadRequestException('Unable to verify payment.');
     }
   }
 
