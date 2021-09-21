@@ -8,10 +8,9 @@ import { AppService } from './app.service';
 @Module({
   imports: [
     OrdersModule,
-    MongooseModule.forRoot(
-      'mongodb://seteladmin:secret@0.0.0.0:27017/dev?authSource=admin',
-    ),
-    // 'mongodb://seteladmin:secret@db:28017/dev?authSource=admin&readPreference=primary',
+    MongooseModule.forRoot('mongodb://mongo:27017/dev', {
+      useNewUrlParser: true,
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],
