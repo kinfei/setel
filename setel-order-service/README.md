@@ -45,3 +45,5 @@ $ npm run test:cov
 ```bash
 http://localhost:3000/api/v1/
 ```
+
+![Screenshot](swagger.JPG)
