@@ -10,10 +10,10 @@ Functions(s):
 - Cancel order
 - Polling to retrieve latest orders list
 
-## Screenshot
+## Web Link
 
 ```bash
-http://localhost:3001/api/v1/
+http://localhost:3002
 ```
 
 ![Screenshot](screenshot.JPG)
@@ -33,10 +33,4 @@ $ npm run start
 # watch mode
 $ npm run start
 
-```
-
-## Web Link
-
-```bash
-http://localhost:3002
 ```
