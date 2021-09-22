@@ -10,14 +10,6 @@ Functions(s):
 - Cancel order
 - Polling to retrieve latest orders list
 
-## Web Link
-
-```bash
-http://localhost:3002
-```
-
-![Screenshot](screenshot.JPG)
-
 ## Installation
 
 ```bash
@@ -34,3 +26,11 @@ $ npm run start
 $ npm run start
 
 ```
+
+## Web Link
+
+```bash
+http://localhost:3002
+```
+
+![Screenshot](screenshot.JPG)
