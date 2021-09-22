@@ -15,17 +15,19 @@ import {
   ApiNoContentResponse,
   ApiNotFoundResponse,
   ApiOkResponse,
-  ApiProperty,
+  ApiTags,
 } from '@nestjs/swagger';
+
+import { OrderDto } from 'src/dto/order.dto';
 
 import { OrdersService } from './orders.service';
 
+@ApiTags('Orders')
 @Controller('orders')
 export class OrdersController {
   constructor(private readonly ordersService: OrdersService) {}
 
   @Post()
-  @ApiProperty({ type: String, name: 'name' })
   @ApiCreatedResponse({
     status: 201,
     description: 'Create new order.',
@@ -36,13 +38,16 @@ export class OrdersController {
   @ApiInternalServerErrorResponse({
     description: 'Internal Server Error.',
   })
-  async createOrder(
-    @Body('name') name: string,
-    @Body('price') price: number,
-    @Body('description')
-    description: string,
-  ) {
-    return await this.ordersService.createOrder(name, price, description);
+  async createOrder(@Body() newOrder: OrderDto) {
+    try {
+      return await this.ordersService.createOrder(
+        newOrder.name,
+        newOrder.price,
+        newOrder.description,
+      );
+    } catch (err) {
+      return { error: err.message };
+    }
   }
 
   @Get()

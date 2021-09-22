@@ -1,6 +1,7 @@
 import { Controller, Post, HttpCode } from '@nestjs/common';
-import { ApiOkResponse, ApiBadRequestResponse } from '@nestjs/swagger';
+import { ApiOkResponse, ApiBadRequestResponse, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Payments')
 @Controller('payments')
 export class PaymentsController {
   @Post('verify')

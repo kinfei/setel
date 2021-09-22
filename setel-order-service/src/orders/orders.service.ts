@@ -22,15 +22,11 @@ export class OrdersService {
   ) {}
 
   async createOrder(name: string, price: number, description: string) {
-    const currentDate = Date.now();
-
     const newOrder = new this.orderModel({
       name,
       price,
       description,
       status: OrdersService.CREATED,
-      created_at: currentDate,
-      updated_at: currentDate,
     });
 
     await newOrder.save();
@@ -122,7 +118,7 @@ export class OrdersService {
         order.updated_at = new Date();
         order.save();
       }
-    }, 50000);
+    }, 30000);
   }
 
   private async findOrder(id: string): Promise<Order> {
