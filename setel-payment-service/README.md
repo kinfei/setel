@@ -6,6 +6,14 @@ Api(s):
 
 - Verify payment
 
+## Swagger Links
+
+```bash
+http://localhost:3001/api/v1/
+```
+
+![Screenshot](swagger.JPG)
+
 ## Installation
 
 ```bash
@@ -34,10 +42,4 @@ $ npm run test:e2e
 
 # test coverage
 $ npm run test:cov
-```
-
-## Swagger Links
-
-```bash
-http://localhost:3001/api/v1/
 ```
