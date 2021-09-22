@@ -10,6 +10,14 @@ Functions(s):
 - Cancel order
 - Polling to retrieve latest orders list
 
+## Screenshot
+
+```bash
+http://localhost:3001/api/v1/
+```
+
+![Screenshot](screenshot.JPG)
+
 ## Installation
 
 ```bash
