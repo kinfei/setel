@@ -1,18 +1,18 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { OrdersModule } from './orders/orders.module';
 
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { OrdersController } from './orders/orders.controller';
+import { OrdersService } from './orders/orders.service';
+import { OrderSchema } from './models/order';
 
 @Module({
   imports: [
-    OrdersModule,
-    MongooseModule.forRoot('mongodb://localhost:27017/dev', {
+    MongooseModule.forRoot('mongodb://mongo:27017/dev', {
       useNewUrlParser: true,
     }),
+    MongooseModule.forFeature([{ name: 'Order', schema: OrderSchema }]),
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [OrdersController],
+  providers: [OrdersService],
 })
 export class AppModule {}
