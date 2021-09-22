@@ -4,15 +4,10 @@ Build a simple order management backend service with Node.js (Nestjs framework) 
 
 # Architecture
 
-    Web <----> Orders Api <-----> (Rest API) Payments Api
+    Web <----> Orders Api <-----> Payments Api
                     |
                     |
                  MongoDB
-
-```bash
-docker compose build
-docker compose up
-```
 
 # Prerequisite
 
@@ -21,6 +16,7 @@ docker compose up
 # Run
 
     Commands for running the app:
+
     - docker-compose up -d
         +orders-api (port 3000)
         +payments-api (port 3001)
