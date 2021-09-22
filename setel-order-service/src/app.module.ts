@@ -8,7 +8,7 @@ import { AppService } from './app.service';
 @Module({
   imports: [
     OrdersModule,
-    MongooseModule.forRoot('mongodb://mongo:27017/dev', {
+    MongooseModule.forRoot('mongodb://localhost:27017/dev', {
       useNewUrlParser: true,
     }),
   ],
