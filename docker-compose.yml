@@ -25,6 +25,7 @@ services:
     build: ./setel-web-ui
     ports:
       - "3002:3002"
+    stdin_open: true
 
   mongo:
     container_name: mongo
