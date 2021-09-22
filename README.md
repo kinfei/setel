@@ -2,6 +2,13 @@
 
 Build a simple order management backend service with Node.js (Nestjs framework) and mongodb. Frontend with React.js client side rendering and Ant Design UI framework.
 
+# Architecture
+
+    Web <----> Orders Api <-----> (Rest API) Payments Api
+                    |
+                    |
+                 MongoDB
+
 ```bash
 docker compose build
 docker compose up
