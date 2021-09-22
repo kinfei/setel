@@ -71,7 +71,9 @@ function ViewOrder(props) {
 
         <Form.Item label="Price">{order.price.toFixed(2)}</Form.Item>
 
-        <Form.Item label="Description">{order.description || "-"}</Form.Item>
+        <Form.Item label="Description">
+          <div className={css.descWrapper}>{order.description || "-"}</div>
+        </Form.Item>
 
         <Form.Item label="Status">{renderStatus(order.status)}</Form.Item>
 
