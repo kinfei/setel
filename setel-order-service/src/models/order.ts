@@ -6,8 +6,8 @@ export const OrderSchema = new mongoose.Schema(
     status: { type: String, required: true },
     price: { type: Number, required: true },
     description: { type: String },
-    created_at: { type: Date, default: Date.now() },
-    updated_at: { type: Date, default: Date.now() },
+    created_at: { type: Date },
+    updated_at: { type: Date },
   },
   { versionKey: false },
 );

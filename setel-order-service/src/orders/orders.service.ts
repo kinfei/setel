@@ -22,11 +22,15 @@ export class OrdersService {
   ) {}
 
   async createOrder(name: string, price: number, description: string) {
+    const currentDate = Date.now();
+
     const newOrder = new this.orderModel({
       name,
       price,
       description,
       status: OrdersService.CREATED,
+      created_at: currentDate,
+      updated_at: currentDate,
     });
 
     await newOrder.save();
@@ -45,7 +49,7 @@ export class OrdersService {
   }
 
   async getOrders() {
-    const orders = await this.orderModel.find().sort({ created_at: -1 }).exec();
+    const orders = await this.orderModel.find().sort({ _id: -1 }).exec();
 
     return orders.map((x) => ({
       id: x.id,
