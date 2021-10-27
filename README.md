@@ -1,6 +1,6 @@
 # Setel Interview Test
 
-Build a simple order management backend service with Node.js (Nestjs framework) and mongodb. Frontend with React.js client side rendering and Ant Design UI framework.
+Build a simple order management backend service with Node.js (Nestjs framework) and mongodb. Frontend with React.js client side rendering and Ant Design UI library.
 
 # Architecture
 
