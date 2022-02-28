@@ -7,3 +7,7 @@ export function convertTimeString(time) {
 
   return moment(time).format("MM-DD-YYYY hh:mm A");
 }
+
+export function validateObjectId(_id) {
+  return _id.length === 24 && !isNaN(Number("0x" + _id));
+}

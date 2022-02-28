@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { Form, Input, Button, message } from "antd";
 
@@ -13,6 +13,8 @@ function NewOrder(props) {
 
   const [loadingData, setLoadingData] = useState(false);
 
+  const navigate = useNavigate();
+
   const onFinish = async (values) => {
     if (values.name && values.price) {
       setLoadingData(true);
@@ -22,7 +24,7 @@ function NewOrder(props) {
       if (result.id) {
         message.success("Order created.");
 
-        props.history.push("/");
+        navigate("/");
       }
     }
   };

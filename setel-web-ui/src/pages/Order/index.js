@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 
-import { Link } from "react-router-dom";
-
-import get from "lodash/get";
+import { Link, useParams, useNavigate } from "react-router-dom";
 
 import { Form, Tag, Button } from "antd";
 
 import { getOrder } from "../../service/api";
 
-import { convertTimeString } from "../../utils";
+import { convertTimeString, validateObjectId } from "../../utils";
 
 import css from "./index.less";
 
@@ -39,9 +37,9 @@ const renderStatus = (status) => {
 };
 
 function ViewOrder(props) {
-  const orderId = get(props, "match.params.id");
+  const { id: orderId } = useParams();
 
-  if (!orderId) props.history("/404");
+  const navigate = useNavigate();
 
   const [order, setOrder] = useState({
     name: "",
@@ -55,6 +53,10 @@ function ViewOrder(props) {
   const [form] = Form.useForm();
 
   useEffect(() => {
+    if (!orderId || !validateObjectId(orderId)) {
+      return navigate("/404");
+    }
+
     async function fetchOrder() {
       const result = await getOrder(orderId);
 
@@ -62,7 +64,7 @@ function ViewOrder(props) {
     }
 
     fetchOrder();
-  }, [orderId]);
+  }, [orderId, navigate]);
 
   return (
     <div className={css.wrapper}>

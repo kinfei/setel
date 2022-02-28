@@ -1,8 +1,6 @@
 import React from "react";
 
-import { Switch, Route, BrowserRouter } from "react-router-dom";
-
-import { createHashHistory } from "history";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 
 import OrderList from "./pages/List";
 
@@ -12,17 +10,15 @@ import Order from "./pages/Order";
 
 import NotFound from "./pages/NotFound";
 
-const history = createHashHistory();
-
 function App() {
   return (
-    <BrowserRouter history={history}>
-      <Switch>
-        <Route exact path="/" component={OrderList} />
-        <Route path="/order/create" component={NewOrder} />
-        <Route path="/order/:id" component={Order} />
-        <Route component={NotFound} />
-      </Switch>
+    <BrowserRouter>
+      <Routes>
+        <Route path="*" element={<NotFound />} />
+        <Route path="/" element={<OrderList />} />
+        <Route path="/order/:id" element={<Order />} />
+        <Route path="/order/create" element={<NewOrder />} />
+      </Routes>
     </BrowserRouter>
   );
 }
